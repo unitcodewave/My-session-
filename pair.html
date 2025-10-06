@@ -3,32 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SILENTBYTE FORCE SESSION ID - WhatsApp Linker</title>
+  <title>SILENTBYTE FORCE SESSION ID</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     :root {
-      --primary-color: #6a11cb;
-      --secondary-color: #2575fc;
+      --primary-color: #000000;
+      --secondary-color: #ffffff;
       --accent-color: #f0f0f0;
-      --text-color: #333333;
+      --text-color: #000000;
       --background-color: #ffffff;
-      --card-bg: #ffffff;
       --hover-color: #f5f5f5;
       --border-color: rgba(0, 0, 0, 0.1);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --success-color: #000aff;
+      --error-color: #e74c3c;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
     }
 
     [data-theme="dark"] {
-      --primary-color: #8a2be2;
-      --secondary-color: #4169e1;
-      --text-color: #f0f0f0;
+      --primary-color: #ffffff;
+      --secondary-color: #121212;
+      --accent-color: #1e1e1e;
+      --text-color: #ffffff;
       --background-color: #121212;
-      --card-bg: #1e1e1e;
       --hover-color: #2a2a2a;
       --border-color: rgba(255, 255, 255, 0.1);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --success-color: #4d7cfe;
+      --error-color: #ff6b6b;
+      --card-bg: #1e1e1e;
+      --shadow-color: rgba(0, 0, 0, 0.3);
     }
 
     * {
@@ -39,14 +43,14 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--background-color) 0%, var(--hover-color) 100%);
+      background: var(--background-color);
       color: var(--text-color);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 15px;
-      transition: var(--transition);
+      transition: all 0.4s ease;
     }
 
     .container {
@@ -55,15 +59,9 @@
       background: var(--card-bg);
       border-radius: 20px;
       padding: 30px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 10px 30px var(--shadow-color);
       border: 1px solid var(--border-color);
-      transition: var(--transition);
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      transition: all 0.4s ease;
     }
 
     .header {
@@ -78,54 +76,49 @@
       right: 0;
       background: var(--hover-color);
       border: 1px solid var(--border-color);
-      border-radius: 50px;
-      width: 50px;
-      height: 25px;
-      cursor: pointer;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
-      padding: 0 5px;
-      transition: var(--transition);
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .theme-toggle::before {
-      content: '';
-      position: absolute;
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      transition: var(--transition);
-      transform: translateX(0);
-    }
-
-    [data-theme="dark"] .theme-toggle::before {
-      transform: translateX(25px);
+    .theme-toggle:hover {
+      transform: rotate(15deg);
+      background: var(--accent-color);
     }
 
     .logo {
       width: 80px;
       height: 80px;
       margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary-color), #333333);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 32px;
       color: white;
-      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
-      transition: var(--transition);
+      box-shadow: 0 4px 15px var(--shadow-color);
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .title {
       font-size: 26px;
       font-weight: 800;
       margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), #555555);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .subtitle {
@@ -133,7 +126,7 @@
       color: var(--text-color);
       opacity: 0.7;
       margin-bottom: 20px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .developer {
@@ -141,7 +134,7 @@
       color: var(--text-color);
       opacity: 0.6;
       margin-bottom: 15px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .social-icons {
@@ -161,18 +154,18 @@
       color: #fff;
       font-size: 18px;
       text-decoration: none;
-      transition: var(--transition);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .social-icons a.youtube { background: #FF0000; }
     .social-icons a.telegram { background: #0088cc; }
-    .social-icons a.whatsapp { background: #25D366; }
+    .social-icons a.whatsapp { background: #0cfa10; }
     .social-icons a.github { background: #333; }
 
     .social-icons a:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
 
     /* Toggle Switch Styles */
@@ -182,28 +175,27 @@
       justify-content: center;
       margin-bottom: 20px;
       background: var(--hover-color);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 4px;
       border: 1px solid var(--border-color);
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .toggle-option {
       flex: 1;
-      padding: 10px 16px;
+      padding: 12px 16px;
       text-align: center;
       cursor: pointer;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 14px;
       font-weight: 500;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       position: relative;
     }
 
     .toggle-option.active {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      box-shadow: 0 2px 8px rgba(106, 17, 203, 0.3);
+      background: var(--primary-color);
+      color: var(--secondary-color);
     }
 
     .toggle-option:not(.active) {
@@ -211,12 +203,35 @@
     }
 
     .toggle-option:hover:not(.active) {
-      background: var(--card-bg);
+      background: var(--accent-color);
+    }
+
+    .copy-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--hover-color);
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      color: var(--text-color);
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-color);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
     .input-group {
       margin-bottom: 20px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .input-group.hidden {
@@ -228,44 +243,45 @@
       margin-bottom: 8px;
       font-weight: 500;
       font-size: 13px;
-      transition: var(--transition);
+      color: var(--text-color);
+      transition: all 0.3s ease;
     }
 
     .input-field {
       width: 100%;
       padding: 14px;
       border: 1.5px solid var(--border-color);
-      border-radius: 12px;
-      background: var(--card-bg);
+      border-radius: 14px;
+      background: var(--background-color);
       color: var(--text-color);
       font-size: 15px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .input-field:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
     }
 
     .generate-btn {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary-color), #333333);
       border: none;
-      border-radius: 12px;
-      color: white;
+      border-radius: 14px;
+      color: var(--secondary-color);
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
+      box-shadow: 0 4px 12px var(--shadow-color);
     }
 
     .generate-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+      box-shadow: 0 6px 18px var(--shadow-color);
     }
 
     .generate-btn.hidden {
@@ -274,8 +290,8 @@
 
     .code-display {
       background: var(--hover-color);
-      padding: 14px;
-      border-radius: 12px;
+      padding: 16px;
+      border-radius: 14px;
       text-align: center;
       font-size: 16px;
       font-weight: 600;
@@ -285,18 +301,18 @@
       align-items: center;
       justify-content: center;
       border: 1.5px solid var(--border-color);
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .qr-display {
       background: var(--hover-color);
       padding: 30px;
-      border-radius: 12px;
+      border-radius: 14px;
       text-align: center;
       margin-bottom: 16px;
       border: 1.5px solid var(--border-color);
       display: none;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .qr-image {
@@ -304,8 +320,8 @@
       max-height: 280px;
       margin: 0 auto 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      transition: var(--transition);
+      box-shadow: 0 4px 16px var(--shadow-color);
+      transition: all 0.3s ease;
     }
 
     .qr-instructions {
@@ -313,26 +329,27 @@
       color: var(--text-color);
       opacity: 0.7;
       line-height: 1.5;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .success-message {
-      color: var(--primary-color);
+      color: var(--success-color);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       font-size: 16px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
 
     .error-message {
-      color: #e74c3c;
+      color: var(--error-color);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       font-size: 14px;
+      transition: all 0.3s ease;
     }
 
     .loading {
@@ -343,9 +360,7 @@
 
     .loading i {
       font-size: 24px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary-color);
       animation: spin 1s linear infinite;
     }
 
@@ -354,36 +369,18 @@
       100% { transform: rotate(360deg); }
     }
 
-    .copy-btn {
-      width: 100%;
-      padding: 14px;
-      background: var(--hover-color);
-      border: 1.5px solid var(--border-color);
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: var(--transition);
-      color: var(--text-color);
-    }
-
-    .copy-btn:hover {
-      background: var(--card-bg);
-      border-color: var(--primary-color);
-      transform: translateY(-1px);
-    }
-
     .footer {
       text-align: center;
       margin-top: 20px;
       font-size: 12px;
       color: var(--text-color);
-      opacity: 0.6;
-      transition: var(--transition);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    /* Smooth transitions for all interactive elements */
+    button, a, .toggle-option, .input-field, .logo, .social-icons a {
+      transition: all 0.3s ease;
     }
 
     @media (max-width: 480px) {
@@ -412,13 +409,13 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="theme-toggle" id="themeToggle"></div>
-      <div class="logo">
-        <i class="fas fa-shield-alt"></i>
+      <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
       </div>
+      <div class="logo"><i class="fas fa-shield-alt"></i></div>
       <h1 class="title">SILENTBYTE FORCE SESSION ID</h1>
       <p class="subtitle">Link your WhatsApp device securely</p>
-      <p class="developer">Developed by Iconic Tech</p>
+      <p class="developer">developed by iconic tech</p>
       <div class="social-icons">
         <a href="https://www.youtube.com/@iconictechdev" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
         <a href="#" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
@@ -439,7 +436,7 @@
 
     <div class="input-group" id="inputGroup">
       <label class="input-label">Enter your WhatsApp number with country code</label>
-      <input type="text" id="mobileNumber" class="input-field" placeholder="+263714388643" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
+      <input type="text" id="mobileNumber" class="input-field" placeholder="+917023951514" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
     </div>
 
     <button class="generate-btn" id="submit">
@@ -466,40 +463,27 @@
     </button>
 
     <div class="footer">
-      <p>© 2025 Iconic Tech | SILENTBYTE FORCE SESSION ID</p>
+      <p>© 2025 iconic tech | SILENTBYTE FORCE SESSION ID</p>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    // Check for saved theme or use preferred color scheme
-    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    
-    themeToggle.addEventListener('click', function() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      
-      // Show theme change notification
-      Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: 'success',
-        title: `Switched to ${newTheme} mode`,
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true
-      });
-    });
-
     let currentMode = 'pair';
+    let currentTheme = 'light';
+
+    // Theme toggle functionality
+    document.getElementById('themeToggle').addEventListener('click', function() {
+      if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        this.innerHTML = '<i class="fas fa-sun"></i>';
+        currentTheme = 'dark';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        this.innerHTML = '<i class="fas fa-moon"></i>';
+        currentTheme = 'light';
+      }
+    });
 
     // Toggle functionality
     document.querySelectorAll('.toggle-option').forEach(option => {
@@ -554,26 +538,27 @@
           qrDisplay.style.display = 'block';
           codeDisplay.style.display = 'none';
           
-          // Show success notification
+          // Show success message with SweetAlert2
           Swal.fire({
-            toast: true,
-            position: 'top-end',
+            title: 'QR Code Generated!',
+            text: 'Scan the QR code with your WhatsApp app',
             icon: 'success',
-            title: 'QR Code generated successfully',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true
+            confirmButtonText: 'OK',
+            background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
           });
         } else {
           codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Failed to generate QR code</div>';
           codeDisplay.style.display = 'flex';
           
-          // Show error notification
+          // Show error message with SweetAlert2
           Swal.fire({
+            title: 'Error!',
+            text: 'Failed to generate QR code',
             icon: 'error',
-            title: 'QR Generation Failed',
-            text: 'Failed to generate QR code. Please try again.',
-            confirmButtonColor: '#6a11cb'
+            confirmButtonText: 'Try Again',
+            background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
           });
         }
       } catch (error) {
@@ -581,12 +566,14 @@
         codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error generating QR code. Please try again.</div>';
         codeDisplay.style.display = 'flex';
         
-        // Show error notification
+        // Show error message with SweetAlert2
         Swal.fire({
+          title: 'Connection Error!',
+          text: 'Error generating QR code. Please try again.',
           icon: 'error',
-          title: 'Connection Error',
-          text: 'Error generating QR code. Please check your connection and try again.',
-          confirmButtonColor: '#6a11cb'
+          confirmButtonText: 'OK',
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
       } finally {
         loadingSpinner.style.display = "none";
@@ -605,27 +592,14 @@
       if (!mobileNumber) {
         codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Please enter your WhatsApp number</div>';
         
-        // Show error notification
+        // Show error message with SweetAlert2
         Swal.fire({
+          title: 'Missing Information!',
+          text: 'Please enter your WhatsApp number',
           icon: 'warning',
-          title: 'Missing Information',
-          text: 'Please enter your WhatsApp number with country code.',
-          confirmButtonColor: '#6a11cb'
-        });
-        return;
-      }
-
-      // Validate phone number format
-      const phoneRegex = /^\+[1-9]\d{1,14}$/;
-      if (!phoneRegex.test(mobileNumber)) {
-        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Please enter a valid phone number with country code</div>';
-        
-        // Show error notification
-        Swal.fire({
-          icon: 'warning',
-          title: 'Invalid Format',
-          text: 'Please enter a valid phone number starting with + followed by country code and number.',
-          confirmButtonColor: '#6a11cb'
+          confirmButtonText: 'OK',
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
         return;
       }
@@ -641,22 +615,26 @@
         if (code === "Service Unavailable") {
           codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Service Unavailable</div>';
           
-          // Show error notification
+          // Show error message with SweetAlert2
           Swal.fire({
+            title: 'Service Unavailable!',
+            text: 'Please try again later',
             icon: 'error',
-            title: 'Service Unavailable',
-            text: 'The pairing service is currently unavailable. Please try again later.',
-            confirmButtonColor: '#6a11cb'
+            confirmButtonText: 'OK',
+            background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
           });
         } else {
           codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${code}</div>`;
           
-          // Show success notification
+          // Show success message with SweetAlert2
           Swal.fire({
+            title: 'Code Generated!',
+            text: 'Your pair code has been generated successfully',
             icon: 'success',
-            title: 'Pair Code Generated',
-            html: `Your pair code is: <strong>${code}</strong><br><br>Click the "Copy Code" button to copy it.`,
-            confirmButtonColor: '#6a11cb'
+            confirmButtonText: 'OK',
+            background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
           });
         }
         codeDisplay.style.display = 'flex';
@@ -665,29 +643,33 @@
         codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error generating code. Please try again.</div>';
         codeDisplay.style.display = 'flex';
         
-        // Show error notification
+        // Show error message with SweetAlert2
         Swal.fire({
+          title: 'Error!',
+          text: 'Error generating code. Please try again.',
           icon: 'error',
-          title: 'Connection Error',
-          text: 'Error generating pair code. Please check your connection and try again.',
-          confirmButtonColor: '#6a11cb'
+          confirmButtonText: 'OK',
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
       } finally {
         loadingSpinner.style.display = "none";
       }
     });
-
+    
     function copyCode() {
       const codeDisplay = document.getElementById("codeDisplay").innerText;
       const code = codeDisplay.replace('CODE: ', '');
       
-      // Check if we have a valid code to copy
-      if (!code || code === "Your pair code will appear here" || code.includes("Error") || code.includes("Service Unavailable")) {
+      if (code === 'Your pair code will appear here' || code.includes('Error') || code.includes('Service Unavailable')) {
+        // Show warning message with SweetAlert2
         Swal.fire({
+          title: 'No Code to Copy!',
+          text: 'Please generate a code first',
           icon: 'warning',
-          title: 'Nothing to Copy',
-          text: 'Please generate a code first before copying.',
-          confirmButtonColor: '#6a11cb'
+          confirmButtonText: 'OK',
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
         return;
       }
@@ -697,15 +679,15 @@
         const originalText = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
         
-        // Show success notification
+        // Show success message with SweetAlert2
         Swal.fire({
-          toast: true,
-          position: 'top-end',
+          title: 'Copied!',
+          text: 'Code copied to clipboard',
           icon: 'success',
-          title: 'Code copied to clipboard',
+          timer: 1500,
           showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
         
         setTimeout(() => {
@@ -713,11 +695,15 @@
         }, 2000);
       }).catch(err => {
         console.error("Failed to copy text: ", err);
+        
+        // Show error message with SweetAlert2
         Swal.fire({
+          title: 'Copy Failed!',
+          text: 'Failed to copy code to clipboard',
           icon: 'error',
-          title: 'Copy Failed',
-          text: 'Failed to copy code to clipboard. Please try again.',
-          confirmButtonColor: '#6a11cb'
+          confirmButtonText: 'OK',
+          background: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+          color: getComputedStyle(document.documentElement).getPropertyValue('--text-color')
         });
       });
     }
